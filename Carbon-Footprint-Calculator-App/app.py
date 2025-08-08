@@ -33,7 +33,7 @@ def script():
 
 
 left, middle, right = st.columns([2,3.5,2])
-main, comps, result, goals = middle.tabs([" ", " ", " ", "🎯 Goals & Progress"])
+main, comps, result, goals, dashboard = middle.tabs([" ", " ", " ", "🎯 Goals & Progress", "🏆 Dashboard"])
 
 with open("./style/main.md", "r", encoding="utf-8") as main_page:
     main.markdown(f"""{main_page.read()}""")
@@ -311,6 +311,64 @@ def create_goals_page():
 
 # Call the goals page function
 create_goals_page()
+
+# Dashboard Page
+def create_dashboard_page():
+    st.markdown("""
+    <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 25px; margin: 20px 0; color: white;">
+        <h1 style="font-size: 2.5em; margin: 0;">🌱 Eco Dashboard</h1>
+        <p style="font-size: 1.2em; margin: 10px 0;">Track Your Carbon Journey & Achievements</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Quick Stats
+    col1, col2, col3, col4 = dashboard.columns(4)
+    
+    with col1:
+        st.markdown("""
+        <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 15px; margin: 10px 0;">
+            <div style="font-size: 2.5em;">🌍</div>
+            <h3 style="color: #667eea; margin: 10px 0;">2,847 kg</h3>
+            <p style="color: #666; margin: 5px 0;">Monthly CO₂</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown("""
+        <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 15px; margin: 10px 0;">
+            <div style="font-size: 2.5em;">🔥</div>
+            <h3 style="color: #ff6b6b; margin: 10px 0;">14 Days</h3>
+            <p style="color: #666; margin: 5px 0;">Current Streak</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown("""
+        <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 15px; margin: 10px 0;">
+            <div style="font-size: 2.5em;">🏆</div>
+            <h3 style="color: #4ecdc4; margin: 10px 0;">8 Badges</h3>
+            <p style="color: #666; margin: 5px 0;">Earned</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col4:
+        st.markdown("""
+        <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 15px; margin: 10px 0;">
+            <div style="font-size: 2.5em;">🎯</div>
+            <h3 style="color: #29ad9f; margin: 10px 0;">78%</h3>
+            <p style="color: #666; margin: 5px 0;">Goal Progress</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Navigation to full dashboard
+    st.markdown("""
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="dashboard.py" target="_self" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-size: 1.1em; display: inline-block;">🚀 View Full Dashboard</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Call the dashboard page function
+create_dashboard_page()
 
 with open("./style/footer.html", "r", encoding="utf-8") as footer:
     footer_html = f"""{footer.read()}"""
